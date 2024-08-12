@@ -13,6 +13,7 @@ Feel free to use WITHOUT giving credits, it might however slow the development
 (I am not planning to work full-time on it)
 
 ## Documentation
+You can see all nodes (out of context and with default argument values) in `List-Nodes/list.pdf`. In use example can be found in `Example/fig-alone.pdf` and `Example/scale-fig.pdf`.
 ### Calling Nodes
 - normal calling: `\pic at (x,y) {name_node={arguments}};`
 - if you want to change line color in node (to get a PBS from a BS for example) : 
@@ -33,6 +34,8 @@ Given (x,y) the position of the end (or start) of your wire, the nodes need to b
 
 ### Arguments
 You can pass arguments to specify the name of the node or specify the settings of your devices. Here, we detail the arguments for all defined nodes.
+    
+    **TO DO**
 
 ## Advices
 - Using the default node size might output a picture a bit too big for your needs, in this cas scale **The whole tikz picture** using 
