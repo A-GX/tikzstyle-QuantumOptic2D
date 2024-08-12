@@ -1,0 +1,29 @@
+\documentclass{article}
+\usepackage{tikz}
+
+\usepackage{geometry}
+ \geometry{
+ a4paper,
+ total={170mm,257mm},
+ left=20mm,
+ top=20mm,
+ }
+
+\input{../style-optic_schema_2d.tikz}
+
+
+\begin{document}
+\begin{center}
+    \textbf{Might be two big!}
+    \begin{tikzpicture}
+        \input{fig.tikz}
+    \end{tikzpicture}\\
+    \textbf{Just scale down as such:}
+    \begin{verbatim}
+        \begin{tikzpicture}[... local style ..., scale=.65, every node/.style={scale=.65}]
+    \end{verbatim}
+    \begin{tikzpicture}[scale=.65, every node/.style={scale=.65}]
+        \input{fig.tikz}
+    \end{tikzpicture}
+\end{center}
+\end{document}

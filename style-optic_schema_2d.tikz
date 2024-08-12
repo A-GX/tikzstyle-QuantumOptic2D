@@ -1,0 +1,165 @@
+%
+%   STYLE NAME: style-optic_schema_2D.tikz
+%   (ORIGINAL) AUTHOR: Antoine Gansel
+%
+%
+%   ABSTRACT: Style inspired by FIG. 1. in "Preparing a commercial quantum key
+%       distribution system for certification against implementation loopholes" by
+%       Vadim Makarov et al. 
+%       If you want to participate in the development of this tikzstyle, please open
+%       an issue describing what is missing, I will try to open a development branch
+%       as fast as I can (and see the issue).
+%       Feel free to use WITHOUT giving credits, it might however slow the development
+%       (I am not planning to work full-time on it).
+%
+%   If you own (or plan to create) such an open source tikzstyle, feel free to reach
+%   out, I will happily reference it.  
+%
+%
+%   ADVICES:
+%       If you want to scale up the nodes, use the following
+%    \begin{tikzpicture}[... local style ..., scale=1, every node/.style={scale=...}]
+%        
+%       ....
+%       \draw (x,y) pic {#obj={#1,...}};
+%       ....
+%
+%    \end{tikzpicture}
+%
+\pgfdeclareverticalshading{rainbow}{100bp} {
+    color(0bp)=(violet); color(25bp)=(blue); color(35bp)=(cyan); color(45bp)=(green); color(55bp)=(yellow); color(65bp)=(orange); color(75bp)=(red); color(100bp)=(red)}
+\usetikzlibrary {arrows.meta,shadings,bending}
+\tikzset{
+    font=\small,
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%    DETECTORS   %%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    pics/detector/.style args={#1,#2}{code={
+        \draw[fill=black] node[above] at (.25,.35) {#1} (0,.4) arc(90:-90:0.65 and 0.4) -- cycle node[below] at (.25,-.35) {#2} ;
+    }}, pics/detector/.default={$d_1$,$d_2$},
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%    SPECIAL DETECT   %%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    pics/spe-detect/.style args={#1,#2}{code={
+        \draw node[above] at (.25,.35) {#1} (0,.4) arc(90:-90:0.65 and 0.4) -- cycle node[below] at (.25,-.35) {#2} ;
+    }}, pics/spe-detect/.default={PwM,SD},
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%    LASER   %%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    pics/laser/.style args={#1,#2,#3}{code={
+        \draw[fill=white] node[above] at (0,.35) {#1} (-.5,-.25) rectangle(.5,.25) node[below] at (0,-.35) {\footnotesize #2} node[below] at (0,-.55) {\footnotesize #3};
+        \draw[red, line width=.25mm] (-.4,0) -- (0,0) (-.2,.2) -- (-.2,-.2)
+        (-.35,.15) -- (-.05,-.15) (-.35,-.15) -- (-.05,.15);
+        \draw[red, line width=.25mm, ->] (0.05,0) -- (.4,0);
+    }}, pics/laser/.default={$laser$,$1548.51~mm$, (Ch. 36)},
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%    INTENSITY MODULATOR   %%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    pics/im/.style args={#1}{code={
+        \draw[fill=white] node[above] at (0,.35) {#1} (-.4,-.25) rectangle(.4,.25) ;
+        \draw[red, line width=.25mm] (-.3,-.1) -- (-.1,-.1) -- (-.1,.1) -- (.1,.1) -- (.1,-.1) -- (.3,-.1);
+    }}, pics/im/.default={$IM$},
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%    PHASE MODULATOR   %%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    pics/pm/.style args={#1}{code={
+        \draw[fill=white] node[above] at (0,.35) {#1} (-.4,-.25) rectangle(.4,.25) ;
+        \draw [red, line width=.25mm] plot [smooth, tension=1] coordinates {(-.3,-.1) (-.05,.1) (.05,-.1) (.3,.1)};
+    }}, pics/pm/.default={$PM$},
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%    VARIABLE OPTICAL ATTENUATOR   %%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    pics/voa/.style args={#1,#2}{code={
+        \draw[fill=white] node[above] at (0,.35) {#1} (-.4,-.25) rectangle(.4,.25) node[below] at (0,-.35) {\footnotesize #2};
+        \draw [-{Stealth}] (-.4,-.5) -- (.4,.5) ;
+    }}, pics/voa/.default={VOA, 0.5-30 dB},
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%    ATTENUATOR   %%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    pics/att/.style args={#1,#2}{code={
+        \draw[fill=white] node[above] at (0,.35) {#1} (-.4,-.25) rectangle(.4,.25) node[below] at (0,-.35) {\footnotesize #2};
+    }}, pics/att/.default={Att, 20 dB},
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%    CONNECTOR   %%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    pics/connector/.style={code={
+        \draw[fill=black] (-.1,0) -- (0,.1) -- (.1,0) -- (0,-.1) --cycle ;
+    }},
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%    ROTATOR   %%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    pics/rotator/.style args={#1,#2}{code={
+        \draw[line width=.25mm, -{Stealth}] node[above] at (0,.35) {#1} plot [smooth, tension=1] coordinates {(-.175,-.1) (0,-.4) (.2,0) (0,.4) (-.175,.1)} node[below] at (0,-.35) {\footnotesize #2};
+    }}, pics/rotator/.default={$R$,$45^\circ$},  
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%    MULTIPLEX   %%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    pics/multiplex/.style args={#1,#2,#3}{code={
+        \draw[rounded corners] (.25,0) -- (.5,0)
+        (-.25,.2) -- (-.6,.2) -- (-.6,1) -- (-.85,1)
+        (-.25,-.2) -- (-.6,-.2) -- (-.6,-1) -- (-.85,-1);
+        \draw[line width=.25mm, shading=rainbow] node[left] at (-.15,.1) {\footnotesize #2}
+        node[left] at (-.15,-.1) {\footnotesize #3}
+        node[above] at (.1,.35) {#1} (-.25,-.4) -- (-.25,.4) -- (.25,.2) -- (.25,-.2) -- cycle ;
+    }}, pics/multiplex/.default={$DWDM$, Ch. 36, Ch. 26},
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%    DE-MULTIPLEX   %%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    pics/de-multiplex/.style args={#1,#2,#3}{code={
+        \draw[rounded corners] (-.25,0) -- (-.5,0)
+        (.25,.2) -- (.6,.2) -- (.6,1) -- (.85,1)
+        (.25,-.2) -- (.6,-.2) -- (.6,-1) -- (.85,-1);
+        \draw[line width=.25mm, shading=rainbow] node[right] at (.08,.1) {\footnotesize #2}
+        node[right] at (.08,-.1) {\footnotesize #3}
+        node[above] at (-.1,.35) {#1} (-.25,-.2) -- (-.25,.2) -- (.25,.4) -- (.25,-.4) -- cycle;
+    }}, pics/de-multiplex/.default={$DWDdM$, Ch. 36, Ch. 26},
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%    HALF-MIRROR   %%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    pics/half-mirror/.style args={#1,#2}{code={
+        \draw[fill=white] node[above] at (0,.35) {#1} (-.05,-.4) -- (-.05,.4) -- (.05,.4) -- (.05,-.4) -- cycle node[below] at (0,-.5) {\footnotesize $1=:#2\times$};
+        \draw (-.15,.2) -- (.15,.4) -- (-.15,0) -- (.15,.2)
+        -- (-.15,-.2) -- (.15,0) -- (-.15,-.4) -- (.15,-.2);
+    }}, pics/half-mirror/.default={$\frac{1}{2}mirror$, R},
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%    FARADAY-MIRROR   %%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    pics/faraday-mirror/.style args={#1}{code={
+        \draw[fill=black] node[above] at (0,.35) {#1} (-.05,-.4) -- (-.05,.4) -- (.05,.4) -- (.05,-.4) -- cycle;
+        \draw (-.15,.2) -- (.15,.4) -- (-.15,0) -- (.15,.2)
+        -- (-.15,-.2) -- (.15,0) -- (-.15,-.4) -- (.15,-.2);
+    }}, pics/faraday-mirror/.default={FM},
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%    BEAM SPLITTER   %%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    pics/bs/.style args={#1,#2}{code={
+        \draw [rounded corners] node[left] at (-.2,.125) {#1} node[left] at (-.2,-.125){\footnotesize $1=:#2\times$} (-.6,1) -- (-.35,1) -- (-.25,0)  -- (.25,0) -- (.35,1) -- (.6,1)
+        (-.6,-1) -- (-.35,-1) -- (-.25,0)  -- (.25,0) -- (.35,-1) -- (.6,-1);
+    }},pics/bs-in/.default={BS,R},
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%    ISOLATOR   %%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    pics/isolator/.style args={#1,#2}{code={
+        \draw[fill=black] node[above] at (0,.35) {#1} node[below] at (0,-.35) {\footnotesize #2} 
+        (-.2,-.075) -- (-.2,.075) -- (.05,.075) -- (.05,.15) -- (.2,0) -- (.05,-.15)  -- (.05,-.075) -- cycle;
+    }},pics/isolator/.default={Iso, 28dB},
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%    TERMINATOR   %%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    pics/terminator/.style args={#1}{code={
+        \draw[fill=black] node[above] at (0,.35) {#1}
+        (-.1,-.2) -- (-.1,.2) -- (.1,.2) -- (.1,-.2) -- cycle;
+    }},pics/terminator/.default={T},
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%    QUANTUM CANAL   %%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    pics/qc/.style args={#1}{code={
+        \draw node[below] at (0,-.35) {#1} (-.1,.3)circle (.3) (0,.3)circle (.3) (.1,.3)circle (.3) ;
+    }},pics/qc/.default={QC},
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%    POLARISATION CONTROLLER   %%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    pics/pc/.style args={#1}{code={
+        \draw node[above] at (0,.35) {#1} (-.3,.1)circle (.1) (0,.1)circle (.1) (.3,.1)circle (.1) ;
+    }},pics/pc/.default={PC},
+}

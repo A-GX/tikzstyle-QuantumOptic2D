@@ -1,0 +1,43 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%   DRAW CABLES   %%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \draw[red] (0,0) -- (5.1,0) (9,-1) -- (9.9,-1) (19,1) -- (21.5,1);
+    \draw (7.8,1) -- (10,1) (9.9,-1) -- (11,-1) (6.4,-2) -- (7,-2) (12.5,0) -- (16,0)
+    (17.5,-1) -- (18,-1) (22.9,1) -- (23.25,1) (22.9,-1) -- (23.25,-1) (17.5,1) -- (19,1);
+
+    \draw[rounded corners] node at (0.2,3) {\LARGE Alice} (-.5,3) -- (-.5,3.3) -- (14.5,3.3) -- (14.5,3);
+    \draw[rounded corners] node at (16.7,3) {\LARGE Bob} (16,3) -- (16,3.3) -- (24,3.3) -- (24,3);
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%   DRAW NODES   %%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \pic at (0,0) {laser={L1,1548.51 nm, (ch. 36)}};
+    \pic at (1,0) {connector};
+    \pic at (2,0) {im};
+    \pic at (3,0) {rotator}; \pic at (3,0) {connector};
+    \pic at (3.5,0) {connector};
+    \pic at (4.25,0) {pm={PM1}};
+    \pic at (5.1,0) {connector};
+    \pic at (5.75,-1) {bs={BS,99}}; \pic at (5.1,-2) {terminator={T1}}; \pic at (6.4,0) {connector};
+    \pic at (6.4,-2) {connector}; \pic at (7,-2) {spe-detect={PwM,}};
+
+    \pic at (7.25,1) {multiplex={DWDM1,.,ch. 36}}; \pic at (6.4,2) {terminator={T2}}; 
+    
+    \pic at (7.8,1) {connector};
+    \pic at (9,1) {voa={VOA1,0.5 - 30 dB}};
+    \pic at (10,1) {connector}; \pic at (10.5,1) {att}; \pic at (11,1) {connector};
+    \pic at (8.75,-1) {laser={L2,1554.94 nm, (ch. 26)}};
+    \pic at (9.9,-1) {connector}; \pic at (10.5,-1) {voa={VOA2,0.5 - 30 dB}};\pic at (11,-1) {connector};
+    \pic at (11.9,0) {multiplex={DWDM2,ch. 36, ch. 26}}; \pic at (12.5,0) {connector};
+
+    \pic at (13,0) {isolator={Iso1, 28dB}}; \pic at (13.5,0) {connector}; \pic at (14,0) {isolator={Iso2,48 dB}}; \pic at (14.5,0) {connector}; \pic at (16,0) {connector}; \pic at (15.25,0) {qc};
+
+    \pic at (16.6,0) {de-multiplex}; \pic at (17.5,-1) {connector}; \pic at (17.5,1) {connector}; \pic at (18,-1) {spe-detect={SD,}};
+
+    \pic at (18.25,1) {pc}; \pic at (19,1) {connector}; 
+    \pic at (19.75,1) {pm={PM2}}; 
+    \pic at (20.5,1) {connector}; \pic at (21,1) {connector}; \pic at (21,1) {rotator}; \pic at (21.5,1) {connector};
+
+    \draw[red] (22.2,0) pic {bs={PBS,?}}; \pic at (21.5,-1) {terminator={T3}};
+
+    \pic at (22.9,1) {connector}; \pic at (23.25,1) {detector={SPD1,}};\pic at (22.9,-1) {connector}; \pic at (23.25,-1) {detector={,SPD2}};

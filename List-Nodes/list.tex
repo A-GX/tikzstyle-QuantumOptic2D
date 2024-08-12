@@ -1,0 +1,32 @@
+\documentclass{standalone} %<--- standalone
+\usepackage{tikz}
+
+\definecolor{center}{HTML}{b4776a}
+\input{../style-optic_schema_2d.tikz}
+
+\begin{document}    
+
+\begin{tikzpicture}
+    \draw (0,0) pic {detector}; \filldraw [center] (0,0) circle (1pt); 
+    \draw (0,-2) pic {laser}; \filldraw [center] (0,-2) circle (1pt);
+    \draw (0,-4) pic {im}; \filldraw [center] (0,-4) circle (1pt);
+    \draw (0,-5.2) pic {pm}; \filldraw [center] (0,-5) circle (1pt);
+    \draw (0,-6) pic {connector}; \filldraw [center] (0,-6) circle (1pt);
+    \draw (0,-7.3) pic {rotator} pic {connector}; \filldraw [center] (0,-7.3) circle (1pt);
+    \draw (0,-9.5) pic {multiplex}; \filldraw [center] (0,-9.5) circle (1pt);
+    \draw (0,-12.5) pic {de-multiplex}; \filldraw [center] (0,-12.5) circle (1pt);
+    \draw (0,-15) pic {voa}; \filldraw [center] (0,-15) circle (1pt);
+    \draw (0,-17) pic {half-mirror}; \filldraw [center] (0,-17) circle (1pt);
+    \draw (0,-19) pic {faraday-mirror}; \filldraw [center] (0,-19) circle (1pt);
+    \draw (0,-21) pic {bs}; \filldraw [center] (0,-21) circle (1pt);
+    \draw (0,-23) pic {isolator}; \filldraw [center] (0,-23) circle (1pt);
+    \draw (0,-25) pic {terminator}; \filldraw [center] (0,-25) circle (1pt);
+    \draw (0,-27) pic {att}; \filldraw [center] (0,-27) circle (1pt);
+    \draw (0,-29) pic {spe-detect}; \filldraw [center] (0,-29) circle (1pt); 
+    \draw (0,-31) pic {qc}; \filldraw [center] (0,-31) circle (1pt);
+    \draw (0,-33) pic {pc}; \filldraw [center] (0,-33) circle (1pt);
+    \filldraw [center] (0,-35) circle (1pt);
+
+\end{tikzpicture}
+
+\end{document}
