@@ -1,7 +1,7 @@
 # Tikzstyle: Quantum Optic 2D
 
 ## Abstract
--   This style has originally been thought to draw schemas of QKD implementations, it will thus likely lack symbols for other use (even for QKD, it is probably not complete). Feel free to propose new Nodes that you feel are missing (see "How can you help?" section), I will try to react reasonably fast.
+-   This style has originally been thought to draw schemas of QKD implementations, it will thus likely lack symbols for other uses (even for QKD, it probably is not complete). Feel free to propose new Nodes that you feel are missing (see "How can you help?" section), I will try to react reasonably fast.
 -   This style is inspired by FIG. 1. in [Preparing a commercial quantum key
 distribution system for certification against implementation loopholes, Vadim Makarov et al](https://arxiv.org/abs/2310.20107). (In particular, the example picture is a copy of the above-mentioned schema).
 - Feel free to use WITHOUT giving credits, it might however slow down the development process
