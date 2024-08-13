@@ -58,6 +58,8 @@ You can pass arguments to specify the name of the node or specify the settings o
 - Using the default node size might output a picture a bit too big for your needs, in this cas scale **The whole tikz picture** using 
     
         \begin{tikzpicture}[scale=.65, every node/.style={scale=.65}]
+        
+- When using with beamer, do not forget to use a `fragile` frame environment!
 
 ## How can you help ?
 ### Missing Nodes
