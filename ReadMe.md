@@ -74,4 +74,4 @@ You can pass arguments to specify the name of the node or specify the settings o
 3. Your git-hub username will be added to the list of collaborators.
 
 ### Better Documentation
-. Submit change by opening a "Documentation" issue
+1. Submit change by opening a "Documentation" issue
