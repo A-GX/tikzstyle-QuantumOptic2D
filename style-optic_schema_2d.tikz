@@ -1,6 +1,10 @@
 %
 %   STYLE NAME: style-optic_schema_2D.tikz
-%   (ORIGINAL) AUTHOR: Antoine Gansel
+%   ORIGINAL AUTHOR: Antoine Gansel
+%   COLLABORATORS (to various degrees):
+%           |
+%           |_
+%   NBR ANONYMOUS COLLABORATORS: 0
 %
 %
 %   ABSTRACT: Style inspired by FIG. 1. in "Preparing a commercial quantum key
@@ -142,7 +146,7 @@
     pics/isolator/.style args={#1,#2}{code={
         \draw[fill=black] node[above] at (0,.35) {#1} node[below] at (0,-.35) {\footnotesize #2} 
         (-.2,-.075) -- (-.2,.075) -- (.05,.075) -- (.05,.15) -- (.2,0) -- (.05,-.15)  -- (.05,-.075) -- cycle;
-    }},pics/isolator/.default={Iso, 28dB},
+    }},pics/isolator/.default={Iso, 28 dB},
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%    TERMINATOR   %%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
