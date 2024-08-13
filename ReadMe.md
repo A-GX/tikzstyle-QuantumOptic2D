@@ -49,7 +49,7 @@ You can pass arguments to specify the name of the node or specify the settings o
 - Half-mirror: `half-mirror={$\frac{1}{2}-mirror$,R}`
 - faraday-mirror: `faraday-mirror={FM}`
 - Beam Splitter: `bs={BS,R}`
-- Isolator: `isolator={Iso, 28 dB}`
+- Isolator: `isolator={Iso,28 dB}`
 - Terminator: `terminator={T}`
 - Quantum Canal: `qc={QC}`
 - Polarisation Contoller: `pc={PC}`
