@@ -1,5 +1,6 @@
 %
 %   STYLE NAME: style-optic_schema_2D.tikz
+%   LINK: https://github.com/A-GX/tikzstyle-QuantumOptic2D
 %   ORIGINAL AUTHOR: Antoine Gansel
 %   COLLABORATORS (to various degrees):
 %           |
@@ -45,7 +46,7 @@
 %%%%%%%%%%%%%%    SPECIAL DETECT   %%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     pics/spe-detect/.style args={#1,#2}{code={
-        \draw node[above] at (.25,.35) {#1} (0,.4) arc(90:-90:0.65 and 0.4) -- cycle node[below] at (.25,-.35) {#2} ;
+        \draw[fill=white] node[above] at (.25,.35) {#1} (0,.4) arc(90:-90:0.65 and 0.4) -- cycle node[below] at (.25,-.35) {#2} ;
     }}, pics/spe-detect/.default={PwM,SD},
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%    LASER   %%%%%%%%%%%%%%%%%%%%%%%
